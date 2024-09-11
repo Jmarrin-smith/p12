@@ -1,0 +1,52 @@
+.container {
+  min-width: 100vw;
+  min-height: 5vh;
+  background-color: rgb(42, 42, 211);
+  color: whitesmoke;
+}
+
+.navitemscontainer {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  min-width: 80vw;
+  min-height: 5vh;
+}
+
+@media screen and (max-width: 750px) {
+  .navitemscontainer {
+    min-width: 90vw;
+    min-height: 10vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navitemscontainer {
+    min-width: 100vw;
+    min-height: 15vh;
+  }
+  .navitemscontainer {
+    flex-direction: column;
+  }
+}
+
+.placeholder {
+  width: 10px;
+  height: 10px;
+  flex: 1;
+}
+
+.home {
+  flex: 1;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+  flex: 1;
+}
