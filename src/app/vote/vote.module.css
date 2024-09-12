@@ -4,7 +4,7 @@
 
 .voteContainer {
   margin: auto;
-  width: 800px;
+  max-width: 904px;
   height: 800px;
 }
 
@@ -18,4 +18,20 @@
   height: 50%;
   width: 100%;
   background-color: red;
+}
+
+@media screen and (max-width: 1000px) {
+  .voteContainer {
+    margin: auto;
+    max-width: 800px;
+    height: 800px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .voteContainer {
+    margin: auto;
+    max-width: 400px;
+    height: 800px;
+  }
 }
