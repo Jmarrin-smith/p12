@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./pagecomponants/nav";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,11 +12,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Nav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Nav />
+          <SignedOut></SignedOut>
+          <SignedIn>
+            <div className="wrappercontent">
+              <div className="container">{children}</div>
+            </div>
+          </SignedIn>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

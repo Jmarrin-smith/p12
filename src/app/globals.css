@@ -31,3 +31,78 @@ body {
     text-wrap: balance;
   }
 }
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--tectcolour);
+}
+
+.wrappercontent {
+  top: 7vh;
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media screen and (max-width: 1536px) {
+  .wrappercontent {
+    max-width: 1366px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrappercontent {
+    max-width: 1024px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .wrappercontent {
+    max-width: 800px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .wrappercontent {
+    max-width: 700;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .wrappercontent {
+    top: 12vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrappercontent {
+    max-width: 420px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrappercontent {
+    max-width: 350px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .wrappercontent {
+    top: 17vh;
+  }
+}
