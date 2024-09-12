@@ -1,0 +1,21 @@
+.PageTitle {
+  text-align: center;
+}
+
+.voteContainer {
+  margin: auto;
+  width: 800px;
+  height: 800px;
+}
+
+.voteA {
+  height: 50%;
+  width: 100%;
+  background-color: blue;
+}
+
+.voteB {
+  height: 50%;
+  width: 100%;
+  background-color: red;
+}
