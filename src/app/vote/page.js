@@ -18,7 +18,7 @@ export default function VotePage() {
     let Pa = probability(itemBrating, itemArating);
 
     // Update Elo
-    // k is a constant number i.e.30
+    // k is a constant number i.e. 30
     itemArating = itemArating + K * (outcome - Pa);
     itemBrating = itemBrating + K * (1 - outcome - Pb);
 
@@ -29,6 +29,7 @@ export default function VotePage() {
     itemArating = Math.floor(itemArating);
     itemBrating = Math.floor(itemBrating);
     console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+    console.log(Pa + Pb);
   }
 
   //redundant demo testing
