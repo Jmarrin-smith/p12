@@ -23,6 +23,9 @@ export default function Nav() {
           <Link href="/list">
             <h3>list</h3>
           </Link>
+      <Link href="/vote">
+            <h3>vote</h3>
+          </Link>
           <Link href="/search">
             <h3>search</h3>
           </Link>
