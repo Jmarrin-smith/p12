@@ -1,0 +1,75 @@
+.h1 {
+  text-align: center;
+}
+
+.additemforminputbox {
+  width: 16rem;
+  margin: auto;
+  align-content: center;
+}
+
+.additemforminput {
+  align-self: center;
+}
+
+.finishlist {
+  text-align: center;
+  position: absolute;
+  right: 20%;
+  top: 10rem;
+  background-color: blue;
+  border-radius: 1rem;
+  width: 4.5rem;
+}
+
+.cancel {
+  text-align: center;
+  position: absolute;
+  left: 20%;
+  top: 10rem;
+  background-color: red;
+  border-radius: 1rem;
+  width: 4rem;
+}
+
+@media screen and (max-width: 750px) {
+  .finishlist {
+    position: absolute;
+    right: 10%;
+    top: 10rem;
+  }
+
+  .cancel {
+    position: absolute;
+    left: 10%;
+    top: 10rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .finishlist {
+    position: absolute;
+    right: 7%;
+    top: 7rem;
+  }
+
+  .cancel {
+    position: absolute;
+    left: 7%;
+    top: 7rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .finishlist {
+    position: absolute;
+    right: 5%;
+    top: 12rem;
+  }
+
+  .cancel {
+    position: absolute;
+    left: 5%;
+    top: 12rem;
+  }
+}

@@ -1,0 +1,14 @@
+.additemformbtn {
+  background-color: blue;
+  border-radius: 5px;
+  width: 4.3rem;
+  text-align: center;
+  position: relative;
+  left: 80%;
+}
+
+.additemforminput {
+  width: 16rem;
+  position: relative;
+  left: 80%;
+}
