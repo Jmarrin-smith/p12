@@ -1,0 +1,7 @@
+2024/09/12 12:22:04 Micro started
+2024/09/12 12:22:04 ONBUFFEROPEN typescript
+2024/09/12 12:22:04 Server Options map[1:python=pylsp 2:go=gopls 3:typescript=deno lsp 4:javascript=deno lsp 5:markdown=deno lsp 6:json=deno lsp 7:jsonc=deno lsp 8:rust=rls 9:lua=lua-lsp 10:c++=clangd 11:python=pylsp 12:go=gopls 13:typescript=deno lsp 14:javascript=deno lsp 15:markdown=deno lsp 16:json=deno lsp 17:jsonc=deno lsp 18:rust=rls 19:lua=lua-lsp 20:c++=clangd]
+2024/09/12 12:22:04 Starting server typescript
+2024/09/12 12:22:04 ONBUFFEROPEN unknown
+2024/09/12 12:22:04 ONBUFFEROPEN unknown
+2024/09/12 12:22:04 ONEXIT typescript 
