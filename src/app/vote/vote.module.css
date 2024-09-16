@@ -8,6 +8,14 @@
   height: 800px;
 }
 
+.voteno {
+  z-index: 3;
+  height: 4rem;
+  width: 8rem;
+  background-color: darkgoldenrod;
+  text-align: center;
+}
+
 .voteA {
   height: 50%;
   width: 100%;
