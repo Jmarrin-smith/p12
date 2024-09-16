@@ -1,0 +1,45 @@
+.PageTitle {
+  text-align: center;
+}
+
+.voteContainer {
+  margin: auto;
+  max-width: 904px;
+  height: 800px;
+}
+
+.voteno {
+  z-index: 3;
+  height: 4rem;
+  width: 8rem;
+  background-color: darkgoldenrod;
+  text-align: center;
+}
+
+.voteA {
+  height: 50%;
+  width: 100%;
+  background-color: blue;
+}
+
+.voteB {
+  height: 50%;
+  width: 100%;
+  background-color: red;
+}
+
+@media screen and (max-width: 1000px) {
+  .voteContainer {
+    margin: auto;
+    max-width: 800px;
+    height: 800px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .voteContainer {
+    margin: auto;
+    max-width: 400px;
+    height: 800px;
+  }
+}
