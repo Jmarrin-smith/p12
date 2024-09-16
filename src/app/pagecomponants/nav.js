@@ -1,12 +1,6 @@
 import Link from "next/link";
 import styles from "./nav.module.css";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Nav() {
   return (
@@ -28,6 +22,9 @@ export default function Nav() {
         <div className={styles.links}>
           <Link href="/list">
             <h3>list</h3>
+          </Link>
+          <Link href="/vote">
+            <h3>vote</h3>
           </Link>
           <Link href="/search">
             <h3>search</h3>
