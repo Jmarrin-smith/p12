@@ -37,6 +37,39 @@ export default function VotePage() {
   eloRating(1600, 600, 30, 0.5);
   eloRating(1200, 1200, 30, 0);
 
+  function randomrow(nrows) {
+    //for continuos random play
+    let row1 = Math.floor(Math.random() * nrows); //generates random number for search by row.id
+    let row2 = Math.floor(Math.random() * nrows);
+    if (row1 == row2) {
+      //if the rows = the same then row 2 has 1 added to it
+      row2 = row2 + 1;
+      if (row2 == nrows) {
+        // if row 2 = the number of rows then row 2 is set to 0 i.e first id by search
+        row2 = 0;
+      }
+    }
+    console.log(row1, row2);
+  }
+
+  randomrow(2); //should = 1,0 || 0,1
+  randomrow(50); // should return any combo n n when  0 ≥ x < 50
+
+  // function finrandomrow(rows) {
+  //   // generate an array of all possible uniqe combos of items
+  //   for (let x = 0; x < rows; x++) {
+  //     // console.log(x);
+  //     for (let y = 0; y < rows; y++) {
+  //       if (x != y) {
+  //         console.log(x, y);
+
+  //       }
+  //     }
+  //   }
+  // }
+
+  // finrandomrow(5);
+
   return (
     <>
       <div className={styles.PageTitle}>
