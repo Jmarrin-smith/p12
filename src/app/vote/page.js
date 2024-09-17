@@ -3,6 +3,20 @@ import styles from "./vote.module.css";
 export default function VotePage() {
   `use server`;
 
+  function fetchpair() {
+    //query number of rows
+    //randomrow(^)
+    //change randomrow to return array
+    //query array.1
+    //add rows to displayarray
+    //query array.2
+    //add rows to displayarray
+  }
+
+  function displayarrayreset() {
+    //displayarray pop all
+  }
+
   //calculate the Probability of winning
   function probability(rating1, rating2) {
     // expected score
@@ -33,9 +47,38 @@ export default function VotePage() {
   }
 
   //redundant demo testing
-  eloRating(1200, 1000, 30, 1);
-  eloRating(1600, 600, 30, 0.5);
-  eloRating(1200, 1200, 30, 0);
+  // eloRating(1200, 1000, 30, 1);
+  // eloRating(1600, 600, 30, 0.5);
+  // eloRating(1200, 1200, 30, 0);
+
+  function awin() {
+    // use random item pair
+    // call elorating(a,b,30,1)
+    //update elo in db
+    //gen random pair
+    //displayarrayreset
+    //fetchrows
+  }
+
+  function bwin() {
+    // use random item pair
+    // call elorating(a,b,30,0)
+    //update elo in db
+    //gen random pair
+    //fetch random pair
+    //displayarrayreset
+    //fetchrows
+  }
+
+  function draw() {
+    // use random item pair
+    // call elorating(a,b,30,0.5)
+    //update elo in db
+    //gen random pair
+    //fetch random pair
+    //displayarrayreset
+    //fetchrows
+  }
 
   function randomrow(nrows) {
     //for continuos random play
@@ -77,13 +120,13 @@ export default function VotePage() {
         <p>just click on which is better to cast your vote</p>
       </div>
       <div className={styles.voteContainer}>
-        <div className={styles.voteA}>
+        <div onClick={eloRating()} className={styles.voteA}>
           <p>something</p>
         </div>
-        <div className={styles.voteB}>
+        <div className={styles.voteB} onClick={eloRating(1200, 1000, 30, 0)}>
           <p>something</p>
         </div>
-        <div className={styles.voteno}>
+        <div className={styles.voteno} onClick={eloRating(1200, 1000, 30, 0.5)}>
           <p>no</p>
         </div>
       </div>
