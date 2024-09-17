@@ -38,7 +38,7 @@ export default async function ListPage() {
     <>
       <h1>the big list</h1>
       <div className={styles.additemformbtn}>
-        <button onclick="hideForm()">add item</button>
+        <button onClick="hideForm()">add item</button>
       </div>
       <br />
       <div id="addItemForm" className={styles.additemforminput}>
