@@ -27,6 +27,7 @@ export default async function ListPage() {
             name="additem"
             placeholder="add item"
           />
+          <button>add item</button>
         </form>
       </div>
     </>
