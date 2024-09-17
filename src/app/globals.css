@@ -42,6 +42,11 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
 .container {
   min-height: 100vh;
   background-color: var(--bg);

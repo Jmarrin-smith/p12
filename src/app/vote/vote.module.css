@@ -6,6 +6,7 @@
   margin: auto;
   max-width: 904px;
   height: 800px;
+  pointer-events: none;
 }
 
 .voteno {

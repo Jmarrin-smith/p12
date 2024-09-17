@@ -12,3 +12,9 @@
   position: relative;
   left: 80%;
 }
+
+.list {
+  margin: auto;
+  text-align: center;
+  list-style-type: armenian;
+}
