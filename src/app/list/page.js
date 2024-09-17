@@ -11,7 +11,7 @@ export default async function ListPage() {
     const additem = formData.get("additem");
 
     console.log(additem);
-    //sql query additem (coloms) , ($1,elo 1200 )[additem]
+    //sql query additem (columns) , ($1, elo 1200 )[additem]
   }
 
   const placeholder = [
@@ -24,14 +24,24 @@ export default async function ListPage() {
     <li key={item.id}>{item.name}</li>
   ));
 
+  function hideForm() {
+    const addItemFormHide = document.getElementById("addItemForm");
+    const hideSetting = addItemFormHide.style.display;
+    if (hideSetting.style.display == "none") {
+      hideSetting.style.display = "block";
+    } else {
+      hideSetting.style.display = "none";
+    }
+  }
+
   return (
     <>
       <h1>the big list</h1>
       <div className={styles.additemformbtn}>
-        <button>add item</button>
+        <button onclick="hideForm()">add item</button>
       </div>
       <br />
-      <div className={styles.additemforminput}>
+      <div id="addItemForm" className={styles.additemforminput}>
         <form action={handlesubmitnewitem}>
           <input
             type="text"
