@@ -5,12 +5,14 @@
   text-align: center;
   position: relative;
   left: 80%;
+  pointer-events: all;
 }
 
 .additemforminput {
   width: 16rem;
   position: relative;
   left: 80%;
+  pointer-events: all;
 }
 
 .list {

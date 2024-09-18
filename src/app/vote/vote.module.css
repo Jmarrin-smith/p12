@@ -15,18 +15,21 @@
   width: 8rem;
   background-color: darkgoldenrod;
   text-align: center;
+  pointer-events: all;
 }
 
 .voteA {
   height: 50%;
   width: 100%;
   background-color: blue;
+  pointer-events: all;
 }
 
 .voteB {
   height: 50%;
   width: 100%;
   background-color: red;
+  pointer-events: all;
 }
 
 @media screen and (max-width: 1000px) {
