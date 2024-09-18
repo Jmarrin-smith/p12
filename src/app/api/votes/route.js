@@ -4,58 +4,13 @@ import { supabase } from "@/lib/supabase";
 /**
  * @swagger
  * /api/votes:
- *   get:
- *     summary: Get all votes
- *     description: Retrieves all votes from the database.
- *     responses:
- *       200:
- *         description: A list of votes.
- *       500:
- *         description: Internal server error.
- *   post:
- *     summary: Create a new vote
- *     description: Creates a new vote in the database.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               userId:
- *                 type: string
- *                 description: The ID of the user who cast the vote.
- *               listId:
- *                 type: integer
- *                 description: The ID of the list the vote belongs to.
- *               item1Id:
- *                 type: integer
- *                 description: The ID of the first item in the vote.
- *               item2Id:
- *                 type: integer
- *                 description: The ID of the second item in the vote.
- *               winnerId:
- *                 type: integer
- *                 description: The ID of the winning item.
- *               eloChangeItem1:
- *                 type: integer
- *                 description: The Elo change for the first item.
- *               eloChangeItem2:
- *                 type: integer
- *                 description: The Elo change for the second item.
- *     responses:
- *       201:
- *         description: Vote created successfully.
- *       400:
- *         description: Bad request - missing required fields.
- *       500:
- *         description: Internal server error.
  */
-
-export async function GET() {
+export async function GET(request) {
+  // Get all votes in the database
   const { data: votes, error } = await supabase.from("votes").select("*");
 
   if (error) {
+    // 500 server error if cannot connect to DB
     return new NextResponse(JSON.stringify({ error: error.message }), {
       status: 500,
     });
@@ -64,36 +19,36 @@ export async function GET() {
   }
 }
 
+/**
+ * @swagger
+ * /api/votes:
+ */
 export async function POST(request) {
-  const {
-    userId,
-    listId,
-    item1Id,
-    item2Id,
-    winnerId,
-    eloChangeItem1,
-    eloChangeItem2,
-  } = await request.json();
+  // Body contains user_id, list_id, item1_id, item2_id, and winner_id
+  const { user_id, list_id, item1_id, item2_id, winner_id } =
+    await request.json();
 
-  if (!userId || !listId || !item1Id || !item2Id || !winnerId) {
+  // Basic validation - ensure required fields are present - can improve later if needed?
+  if (!user_id || !list_id || !item1_id || !item2_id || !winner_id) {
     return new NextResponse(
-      JSON.stringify({
-        error: "Missing required fields for creating a vote.",
-      }),
+      JSON.stringify({ error: "Missing required fields" }),
       { status: 400 }
     );
   }
 
+  const elo_change_item_1 = 0;
+  const elo_change_item_2 = 0;
+
   const { data: newVote, error } = await supabase
     .from("votes")
     .insert({
-      userId,
-      listId,
-      item1Id,
-      item2Id,
-      winnerId,
-      eloChangeItem1,
-      eloChangeItem2,
+      user_id,
+      list_id,
+      item1_id,
+      item2_id,
+      winner_id,
+      elo_change_item_1,
+      elo_change_item_2,
     })
     .single();
 
@@ -102,7 +57,7 @@ export async function POST(request) {
       status: 500,
     });
   } else {
-    return new NextResponse(JSON.stringify(`Vote created successfully`), {
+    return new NextResponse(JSON.stringify(newVote), {
       status: 201,
     });
   }
