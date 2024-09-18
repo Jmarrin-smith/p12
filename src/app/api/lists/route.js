@@ -34,6 +34,7 @@ export async function POST(request) {
   const { data: newList, error } = await supabase
     .from("lists")
     .insert({ list_name, user_id })
+    .select("*")
     .single();
 
   if (error) {
@@ -42,8 +43,11 @@ export async function POST(request) {
     });
   } else {
     console.log(newList);
-    return new NextResponse(`New list, ${newList}, with id:, `, {
-      status: 201,
-    });
+    return new NextResponse(
+      `New list, "${list_name}", created with id: ${newList.id}`,
+      {
+        status: 201,
+      }
+    );
   }
 }

@@ -1,54 +1,39 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
-/**
- * @swagger
- * /api/votes:
- */
+// GET /api/list - Get all items in the database
 export async function GET(request) {
-  // Get all votes in the database
-  const { data: votes, error } = await supabase.from("votes").select("*");
+  const { data: items, error } = await supabase.from("items").select("*");
 
   if (error) {
-    // 500 server error if cannot connect to DB
     return new NextResponse(JSON.stringify({ error: error.message }), {
       status: 500,
     });
   } else {
-    return NextResponse.json(votes);
+    return NextResponse.json(items);
   }
 }
 
-/**
- * @swagger
- * /api/votes:
- */
+// POST /api/list - Create a new item
 export async function POST(request) {
-  // Body contains user_id, list_id, item1_id, item2_id, and winner_id
-  const { user_id, list_id, item1_id, item2_id, winner_id } =
-    await request.json();
+  // Body contains name, elo (optional), image_url (optional), and list_id
+  const { name, elo = 400, image_url, list_id } = await request.json();
 
-  // Basic validation - ensure required fields are present
-  if (!user_id || !list_id || !item1_id || !item2_id || !winner_id) {
+  // Basic validation
+  if (!name || !list_id) {
     return new NextResponse(
-      JSON.stringify({ error: "Missing required fields" }),
+      JSON.stringify({ error: "Missing required fields (name, list_id)" }),
       { status: 400 }
     );
   }
 
-  const elo_change_item_1 = 0;
-  const elo_change_item_2 = 0;
-
-  const { data: newVote, error } = await supabase
-    .from("votes")
+  const { data: newItem, error } = await supabase
+    .from("items")
     .insert({
-      user_id,
+      name,
+      elo,
+      image_url,
       list_id,
-      item1_id,
-      item2_id,
-      winner_id,
-      elo_change_item_1,
-      elo_change_item_2,
     })
     .single();
 
@@ -57,7 +42,7 @@ export async function POST(request) {
       status: 500,
     });
   } else {
-    return new NextResponse(JSON.stringify(newVote), {
+    return new NextResponse(JSON.stringify(newItem), {
       status: 201,
     });
   }
