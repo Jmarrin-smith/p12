@@ -21,14 +21,14 @@
 .voteA {
   height: 50%;
   width: 100%;
-  background-color: blue;
+  background-color: rgb(66, 144, 226);
   pointer-events: all;
 }
 
 .voteB {
   height: 50%;
   width: 100%;
-  background-color: red;
+  background-color: #db1200;
   pointer-events: all;
 }
 
