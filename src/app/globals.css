@@ -37,9 +37,19 @@ body {
   overflow-x: hidden;
 }
 
+h1 {
+  font-size: x-large;
+  font-weight: bolder;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li {
+  list-style-type: decimal;
+  list-style-position: inside;
 }
 
 .container {

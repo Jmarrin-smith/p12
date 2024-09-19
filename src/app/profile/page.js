@@ -19,13 +19,8 @@ function ProfilePage() {
   return (
     <div>
       <h1>Profile</h1>
-      {user.profileImageUrl ? (
-        <Image
-          src={user.profileImageUrl}
-          alt="Profile"
-          width={200}
-          height={200}
-        />
+      {user.imageUrl ? (
+        <Image src={user.imageUrl} alt="Profile" width={200} height={200} />
       ) : (
         <div>No profile image available</div>
       )}

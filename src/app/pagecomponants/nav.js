@@ -32,6 +32,9 @@ export default function Nav() {
           <Link href="/addlist">
             <h3>add list</h3>
           </Link>
+          <Link href="/profile">
+            <h3>profile</h3>
+          </Link>
         </div>
       </div>
     </nav>

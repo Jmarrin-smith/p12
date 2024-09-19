@@ -4,35 +4,66 @@
 
 .voteContainer {
   margin: auto;
-  max-width: 904px;
-  height: 800px;
+  max-width: 1000px;
+  height: 500px;
+  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .voteno {
   z-index: 3;
   height: 4rem;
   width: 8rem;
-  background-color: darkgoldenrod;
+  background: rgb(143, 129, 70);
+  background: linear-gradient(
+    180deg,
+    rgba(143, 129, 70, 1) 0%,
+    rgba(180, 147, 2, 1) 100%
+  );
   text-align: center;
+  pointer-events: all;
+  flex: 1 1 100%;
+  order: 1;
 }
 
 .voteA {
-  height: 50%;
+  height: 70%;
   width: 100%;
-  background-color: blue;
+  background: rgb(66, 144, 226);
+  background: linear-gradient(
+    180deg,
+    rgba(66, 144, 226, 1) 0%,
+    rgba(161, 177, 255, 1) 100%
+  );
+  text-align: center;
+  font-size: 3.5rem;
+  pointer-events: all;
+  flex: 1 1 50%;
+  order: 0;
 }
 
 .voteB {
-  height: 50%;
+  height: 70%;
   width: 100%;
-  background-color: red;
+  background: rgb(251, 2, 2);
+  background: linear-gradient(
+    180deg,
+    rgba(251, 2, 2, 1) 0%,
+    rgba(255, 146, 16, 1) 100%
+  );
+  text-align: center;
+  font-size: 3.5rem;
+  pointer-events: all;
+  flex: 1 1 50%;
+  order: 0;
 }
 
 @media screen and (max-width: 1000px) {
   .voteContainer {
     margin: auto;
     max-width: 800px;
-    height: 800px;
+    height: 500px;
   }
 }
 
@@ -40,6 +71,6 @@
   .voteContainer {
     margin: auto;
     max-width: 400px;
-    height: 800px;
+    height: 300px;
   }
 }
