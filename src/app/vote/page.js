@@ -1,3 +1,4 @@
+import Votecards from "../pagecomponants/votecards";
 import styles from "./vote.module.css";
 
 export default function VotePage() {
@@ -44,6 +45,7 @@ export default function VotePage() {
     itemBrating = Math.floor(itemBrating);
     console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
     console.log(Pa + Pb);
+    return { itemArating, itemBrating };
   }
 
   //redundant demo testing
@@ -51,18 +53,20 @@ export default function VotePage() {
   // eloRating(1600, 600, 30, 0.5);
   // eloRating(1200, 1200, 30, 0);
 
-  function awin() {
+  async function awin() {
     // use random item pair
-    // call elorating(a,b,30,1)
+    "use server";
+    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
     //gen random pair
     //displayarrayreset
     //fetchrows
   }
 
-  function bwin() {
+  async function bwin() {
     // use random item pair
-    // call elorating(a,b,30,0)
+    "use server";
+    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0);
     //update elo in db
     //gen random pair
     //fetch random pair
@@ -70,9 +74,10 @@ export default function VotePage() {
     //fetchrows
   }
 
-  function draw() {
+  async function draw() {
     // use random item pair
-    // call elorating(a,b,30,0.5)
+    "use server";
+    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0.5);
     //update elo in db
     //gen random pair
     //fetch random pair
@@ -95,8 +100,8 @@ export default function VotePage() {
     console.log(row1, row2);
   }
 
-  randomrow(2); //should = 1,0 || 0,1
-  randomrow(50); // should return any combo n n when  0 ≥ x < 50
+  //randomrow(2); //should = 1,0 || 0,1
+  //randomrow(50); // should return any combo n n when  0 ≥ x < 50
 
   // function finrandomrow(rows) {
   //   // generate an array of all possible uniqe combos of items
@@ -113,6 +118,15 @@ export default function VotePage() {
 
   // finrandomrow(5);
 
+  async function test() {
+    "use server";
+    console.log("clicked");
+  }
+
+  let placeholderA = { item: "itemA", elo: 400 };
+
+  let placeholderB = { item: "itemB", elo: 400 };
+
   return (
     <>
       <div className={styles.PageTitle}>
@@ -120,15 +134,24 @@ export default function VotePage() {
         <p>just click on which is better to cast your vote</p>
       </div>
       <div className={styles.voteContainer}>
-        <div onClick={eloRating()} className={styles.voteA}>
-          <p>Option A</p>
-        </div>
-        <div className={styles.voteB} onClick={eloRating(1200, 1000, 30, 0)}>
-          <p>Option B</p>
-        </div>
-        <div className={styles.voteno} onClick={eloRating(1200, 1000, 30, 0.5)}>
-          <p>Skip</p>
-        </div>
+        <Votecards
+          clickevent={awin}
+          image={null}
+          innertext={placeholderA.item}
+          styles={styles.voteA}
+        />
+        <Votecards
+          clickevent={bwin}
+          image={null}
+          innertext={placeholderB.item}
+          styles={styles.voteB}
+        />
+        <Votecards
+          clickevent={draw}
+          image={null}
+          innertext={"skip"}
+          styles={styles.voteno}
+        />
       </div>
     </>
   );
