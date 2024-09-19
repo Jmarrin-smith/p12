@@ -6,6 +6,7 @@
   margin: auto;
   max-width: 1000px;
   height: 500px;
+  border-radius: 10px;
   pointer-events: none;
   display: flex;
   flex-wrap: wrap;
@@ -15,6 +16,7 @@
   z-index: 3;
   height: 4rem;
   width: 8rem;
+  border-radius: 10px;
   background: rgb(143, 129, 70);
   background: linear-gradient(
     180deg,
@@ -30,6 +32,7 @@
 .voteA {
   height: 70%;
   width: 100%;
+  border-radius: 10px;
   background: rgb(66, 144, 226);
   background: linear-gradient(
     180deg,
@@ -46,6 +49,7 @@
 .voteB {
   height: 70%;
   width: 100%;
+  border-radius: 10px;
   background: rgb(251, 2, 2);
   background: linear-gradient(
     180deg,
