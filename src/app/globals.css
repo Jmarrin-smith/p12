@@ -122,3 +122,9 @@ input {
     top: 17vh;
   }
 }
+
+.centerAbout {
+  font-size: 1em;
+  text-align: center;
+  margin-top: 10vh;
+}

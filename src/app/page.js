@@ -8,7 +8,7 @@ const HomePage = () => {
       <h1>Bracketiser</h1>
       <section>
         <h2>About</h2>
-        <p>
+        <p className="centerAbout">
           A tool to settle all those heated arguments. Strawberry or chocolate
           milk? Mother Theresa or hedgehogs? Is Golden Wind better than Stardust
           Crusaders?
