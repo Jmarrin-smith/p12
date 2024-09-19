@@ -18,44 +18,48 @@ export default function VotePage() {
     //displayarray pop all
   }
 
-  //calculate the Probability of winning
-  function probability(rating1, rating2) {
-    // expected score
-    return 1 / (1 + Math.pow(10, (rating1 - rating2) / 400));
-  }
-
-  function eloRating(itemArating, itemBrating, K, outcome) {
-    // outcome is a number 1 is item A winnig 0 is item B winning and a draw is .5
-    //Probability of Player B
-    let Pb = probability(itemArating, itemBrating);
-
-    //Probability of Player A
-    let Pa = probability(itemBrating, itemArating);
-
-    // Update Elo
-    // k is a constant number i.e. 30
-    itemArating = itemArating + K * (outcome - Pa);
-    itemBrating = itemBrating + K * (1 - outcome - Pb);
-
-    // updated Elo
-    console.log("Updated Ratings:-");
-    console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
-    // math floor to round the figure to a whole number
-    itemArating = Math.floor(itemArating);
-    itemBrating = Math.floor(itemBrating);
-    console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
-    console.log(Pa + Pb);
-    return { itemArating, itemBrating };
-  }
-
   //redundant demo testing
   // eloRating(1200, 1000, 30, 1);
   // eloRating(1600, 600, 30, 0.5);
   // eloRating(1200, 1200, 30, 0);
 
+  let placeholderA = { item: "itemA", elo: 400 };
+
+  let placeholderB = { item: "itemB", elo: 400 };
+
   async function awin() {
-    // use random item pair
     "use server";
+    //calculate the Probability of winning
+    function probability(rating1, rating2) {
+      // expected score
+      return 1 / (1 + Math.pow(10, (rating1 - rating2) / 400));
+    }
+
+    function eloRating(itemArating, itemBrating, K, outcome) {
+      // outcome is a number 1 is item A winnig 0 is item B winning and a draw is .5
+      //Probability of Player B
+      let Pb = probability(itemArating, itemBrating);
+
+      //Probability of Player A
+      let Pa = probability(itemBrating, itemArating);
+
+      // Update Elo
+      // k is a constant number i.e. 30
+      itemArating = itemArating + K * (outcome - Pa);
+      itemBrating = itemBrating + K * (1 - outcome - Pb);
+
+      // updated Elo
+      console.log("Updated Ratings:-");
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      // math floor to round the figure to a whole number
+      itemArating = Math.floor(itemArating);
+      itemBrating = Math.floor(itemBrating);
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      console.log(Pa + Pb);
+      return { itemArating, itemBrating };
+    }
+
+    // use random item pair
     const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
     //gen random pair
@@ -64,9 +68,39 @@ export default function VotePage() {
   }
 
   async function bwin() {
-    // use random item pair
     "use server";
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0);
+    //calculate the Probability of winning
+    function probability(rating1, rating2) {
+      // expected score
+      return 1 / (1 + Math.pow(10, (rating1 - rating2) / 400));
+    }
+
+    function eloRating(itemArating, itemBrating, K, outcome) {
+      // outcome is a number 1 is item A winnig 0 is item B winning and a draw is .5
+      //Probability of Player B
+      let Pb = probability(itemArating, itemBrating);
+
+      //Probability of Player A
+      let Pa = probability(itemBrating, itemArating);
+
+      // Update Elo
+      // k is a constant number i.e. 30
+      itemArating = itemArating + K * (outcome - Pa);
+      itemBrating = itemBrating + K * (1 - outcome - Pb);
+
+      // updated Elo
+      console.log("Updated Ratings:-");
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      // math floor to round the figure to a whole number
+      itemArating = Math.floor(itemArating);
+      itemBrating = Math.floor(itemBrating);
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      console.log(Pa + Pb);
+      return { itemArating, itemBrating };
+    }
+
+    ("use server");
+    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0); //returns {itemArating , itemBrating }
     //update elo in db
     //gen random pair
     //fetch random pair
@@ -75,9 +109,39 @@ export default function VotePage() {
   }
 
   async function draw() {
-    // use random item pair
     "use server";
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0.5);
+    //calculate the Probability of winning
+    function probability(rating1, rating2) {
+      // expected score
+      return 1 / (1 + Math.pow(10, (rating1 - rating2) / 400));
+    }
+
+    function eloRating(itemArating, itemBrating, K, outcome) {
+      // outcome is a number 1 is item A winnig 0 is item B winning and a draw is .5
+      //Probability of Player B
+      let Pb = probability(itemArating, itemBrating);
+
+      //Probability of Player A
+      let Pa = probability(itemBrating, itemArating);
+
+      // Update Elo
+      // k is a constant number i.e. 30
+      itemArating = itemArating + K * (outcome - Pa);
+      itemBrating = itemBrating + K * (1 - outcome - Pb);
+
+      // updated Elo
+      console.log("Updated Ratings:-");
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      // math floor to round the figure to a whole number
+      itemArating = Math.floor(itemArating);
+      itemBrating = Math.floor(itemBrating);
+      console.log(`itemArating = ${itemArating} itemBrating = ${itemBrating}`);
+      console.log(Pa + Pb);
+      return { itemArating, itemBrating };
+    }
+
+    ("use server");
+    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0.5); //returns {itemArating , itemBrating }
     //update elo in db
     //gen random pair
     //fetch random pair
@@ -122,10 +186,6 @@ export default function VotePage() {
     "use server";
     console.log("clicked");
   }
-
-  let placeholderA = { item: "itemA", elo: 400 };
-
-  let placeholderB = { item: "itemB", elo: 400 };
 
   return (
     <>
