@@ -50,6 +50,7 @@ export async function POST(request) {
       elo_change_item_1,
       elo_change_item_2,
     })
+    .select("*")
     .single();
 
   if (error) {

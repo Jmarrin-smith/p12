@@ -5,10 +5,88 @@
   text-align: center;
   position: relative;
   left: 80%;
+  pointer-events: all;
 }
 
 .additemforminput {
   width: 16rem;
   position: relative;
   left: 80%;
+  pointer-events: all;
+}
+
+.list {
+  margin: auto;
+  text-align: center;
+  list-style-type: armenian;
+  padding: 40px;
+}
+
+.listLegend {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: rgb(221, 73, 73);
+}
+
+.tilesContainer {
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  gap: 16px; /* Space between tiles */
+  margin-top: 16px;
+  align-items: center;
+}
+
+.tile {
+  background-color: #1a69b8; /* Light background */
+  border: 1px solid #dee2e6; /* Light border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 16px; /* Spacing inside the tile */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s; /* Smooth scaling on hover */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+
+.imageContainer {
+  width: 80px;
+  height: 80px; /* Set a fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px; /* Rounded corners for the image container */
+  overflow: hidden; /* Ensure image fits within the container */
+  background-color: #e0e0e0; /* Grey background for the placeholder */
+}
+
+.image {
+  max-width: 100%; /* Ensure image fits within the container */
+  max-height: 100%; /* Maintain aspect ratio */
+}
+
+.placeholder {
+  color: #555; /* Grey text color */
+  font-size: 14px;
+  text-align: center; /* Center the placeholder text */
+  padding: 8px; /* Padding inside the placeholder */
+}
+
+.listLegend {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.additemformbtn,
+.additemforminput {
+  margin: 16px 0;
+}
+
+.additemforminput input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  margin-right: 8px;
 }
