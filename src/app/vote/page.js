@@ -4,6 +4,86 @@ import styles from "./vote.module.css";
 export default function VotePage() {
   `use server`;
 
+  const apiRoot = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  // Need a way to vary this
+  const listId = 1;
+
+  async function fetchListData() {
+    try {
+      const response = await fetch(`${apiRoot}/items/list/${listId}`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const unsortedData = await response.json();
+      const data = unsortedData.sort((a, b) => b.elo - a.elo);
+      setList(data);
+    } catch (error) {
+      console.error("Error fetching list data:", error);
+      setError("Failed to fetch list data.");
+    }
+  }
+
+  function generateUniqueIndexPairs(list) {
+    const pairs = [];
+    for (let i = 0; i < list.length; i++) {
+      for (let j = i + 1; j < list.length; j++) {
+        if (Math.random() < 0.5) {
+          pairs.push([i, j]);
+        } else {
+          pairs.push([j, i]);
+        }
+      }
+    }
+
+    for (let i = pairs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+    }
+
+    return pairs;
+  }
+
+  // GETS ALL ITEMS FROM THE LIST
+  items = fetchListData();
+  // Gets ALL unique pairs
+  pairs = generateUniqueIndeces(items);
+
+  // This function just updates the elo based on item ID
+  async function updateItemElo(itemId, newElo) {
+    try {
+      const response = await fetch(`/api/items/id/${itemId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ elo: newElo }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const updatedItemData = await response.json();
+      console.log("Item updated successfully:", updatedItemData);
+      return updatedItemData; // You can use this data if needed
+    } catch (error) {
+      console.error("There was a problem updating the item:", error);
+      // You might want to handle the error more gracefully in a real application
+      throw error;
+    }
+  }
+
+  function getElos(indeces, items) {
+    const indexA = indeces[0];
+    const indexB = indeces[1];
+
+    const eloA = items[indexA].elo;
+    const eloB = items[indexB].elo;
+
+    return eloA, eloB;
+  }
+
   function fetchpair() {
     //query number of rows
     //randomrow(^)
@@ -62,9 +142,8 @@ export default function VotePage() {
     // use random item pair
     const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
-    //gen random pair
-    //displayarrayreset
-    //fetchrows
+    //displayarrayreset()
+    //fetchpair()
   }
 
   async function bwin() {
