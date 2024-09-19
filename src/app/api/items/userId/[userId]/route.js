@@ -53,6 +53,7 @@ export async function DELETE(request) {
     .eq("id", function () {
       this.from("items").select("list_id").eq("id", itemId);
     })
+    .select("*")
     .single();
 
   if (listError) {

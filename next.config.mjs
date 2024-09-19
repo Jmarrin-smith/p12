@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+  reactStrictMode: true,
   images: {
-    domains: ["img.clerk.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**", // Allow any hostname
+      },
+    ], 
+      domains: ["img.clerk.com"],
+
   },
 };
 

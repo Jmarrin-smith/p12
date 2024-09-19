@@ -8,6 +8,7 @@ export async function GET(request, { params }) {
     .from("lists")
     .select("*")
     .eq("id", listId)
+    .select("*")
     .single();
 
   if (error) {

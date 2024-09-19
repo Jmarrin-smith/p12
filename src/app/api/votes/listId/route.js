@@ -7,6 +7,7 @@ export async function GET(request, { params }) {
   const { data: votes, error } = await supabase
     .from("votes")
     .select("*")
+    .select("*")
     .eq("list_id", listId);
 
   if (error) {

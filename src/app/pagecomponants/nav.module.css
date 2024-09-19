@@ -1,5 +1,5 @@
 .container {
-  min-width: 100vw;
+  width: 100vw;
   min-height: 5vh;
   background-color: #db1200;
   color: whitesmoke;
@@ -11,8 +11,8 @@
   flex-wrap: wrap;
   flex-direction: row;
   align-content: center;
-  justify-content: space-between;
-  min-width: 80vw;
+  justify-content: space-around;
+  width: 80vw;
   min-height: 5vh;
 }
 
