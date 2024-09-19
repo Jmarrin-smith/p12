@@ -25,7 +25,6 @@ export default function ListPage() {
       }
     }
 
-
     async function fetchListData() {
       try {
         const response = await fetch(`api/items/list/${listId}`);
@@ -39,7 +38,6 @@ export default function ListPage() {
         setError("Failed to fetch list data.");
       }
     }
-
 
     fetchListName();
     fetchListData();
@@ -104,7 +102,8 @@ export default function ListPage() {
           </div>
           <p>
             {index + 1}. {item.name}
-          </p>{" "}
+            {"\xa0◈\xa0"}
+          </p>
           {/* Add ordered number */}
           <p>ELO: {item.elo}</p>
         </div>
@@ -114,7 +113,6 @@ export default function ListPage() {
         <p>No items available</p>
       </div>
     );
-
 
   return (
     <>
@@ -135,14 +133,12 @@ export default function ListPage() {
         </form>
       </div>
       <div className={styles.list}>
-
         <p className={styles.listLegend}>
           List Name = {listName} | List ID = {listId}
         </p>
 
         <p className={styles.listLegend}>Item Name : ELO Score</p>
         <div className={styles.tilesContainer}>{listItems}</div>
-
       </div>
     </>
   );
