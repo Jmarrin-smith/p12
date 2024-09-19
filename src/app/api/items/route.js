@@ -23,19 +23,17 @@ async function fetchImageUrl(itemName) {
   const data = await response.json();
 
   if (data.results && data.results.length > 0) {
-    console.log("Fetched Image URL:", data.results[0].url); /
-    return data.results[0].url; 
+    console.log("Fetched Image URL:", data.results[0].url);
+    return data.results[0].url;
   }
 
-  console.warn("No images found for:", itemName); 
-  return null; 
+  console.warn("No images found for:", itemName);
+  return null;
 }
-
 
 export async function POST(request) {
   const { name, elo = 400, list_id } = await request.json();
 
-  
   if (!name || !list_id) {
     return new NextResponse(
       JSON.stringify({ error: "Missing required fields (name, list_id)" }),
@@ -43,23 +41,21 @@ export async function POST(request) {
     );
   }
 
-  
   const image_url = await fetchImageUrl(name);
 
-  
   const { data: newItem, error } = await supabase
     .from("items")
     .insert({
       name,
       elo,
-      image_url, 
+      image_url,
       list_id,
     })
     .select("*")
     .single();
 
   if (error) {
-    console.error("Error adding item:", error.message); 
+    console.error("Error adding item:", error.message);
     return new NextResponse(JSON.stringify({ error: error.message }), {
       status: 500,
     });
