@@ -121,13 +121,13 @@ export default function VotePage() {
       </div>
       <div className={styles.voteContainer}>
         <div onClick={eloRating()} className={styles.voteA}>
-          <p>something</p>
+          <p>Option A</p>
         </div>
         <div className={styles.voteB} onClick={eloRating(1200, 1000, 30, 0)}>
-          <p>something</p>
+          <p>Option B</p>
         </div>
         <div className={styles.voteno} onClick={eloRating(1200, 1000, 30, 0.5)}>
-          <p>no</p>
+          <p>Skip</p>
         </div>
       </div>
     </>
