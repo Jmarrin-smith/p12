@@ -14,13 +14,8 @@ export default function VotePage() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const unsortedData = await response.json();
-      const data = unsortedData.sort((a, b) => b.elo - a.elo);
-      setList(data);
-    } catch (error) {
-      console.error("Error fetching list data:", error);
-      setError("Failed to fetch list data.");
-    }
+      const data = await response.json();
+      return data
   }
 
   function generateUniqueIndexPairs(list) {
