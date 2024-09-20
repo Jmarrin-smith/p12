@@ -45,8 +45,8 @@ export default function VotePage() {
   // Gets ALL unique pairs
   let pairs = generateUniqueIndexPairs(items);
 
-  console.log(items);
-  console.log(pairs);
+  // console.log(items);
+  // console.log(pairs);
 
   // This function just updates the elo based on item ID
   async function updateItemElo(itemId, newElo) {
@@ -92,7 +92,7 @@ export default function VotePage() {
     const eloA = itemA.elo;
     const eloB = itemB.elo;
 
-    return nameA, nameB, idA, idB, imgUrlA, imgUrlB, eloA, eloB;
+    return { nameA, nameB, idA, idB, imgUrlA, imgUrlB, eloA, eloB };
   }
 
   function getItems(indeces, items) {
@@ -105,8 +105,20 @@ export default function VotePage() {
     return itemA, itemB;
   }
 
+  let usepair = getItemInfo(pairs, items);
+
+  console.log(usepair);
   function displayarrayreset() {
-    //displayarray pop all
+    "use server";
+    delete usepair.eloA;
+    delete usepair.eloB;
+    delete usepair.idA;
+    delete usepair.idB;
+    delete usepair.imgUrlA;
+    delete usepair.imgUrlB;
+    delete usepair.nameA;
+    delete usepair.nameB;
+    return generateUniqueIndexPairs(items);
   }
 
   //redundant demo testing
@@ -151,10 +163,13 @@ export default function VotePage() {
     }
 
     // use random item pair
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 1); //returns {itemArating , itemBrating }
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
-    //displayarrayreset()
-    //fetchpair()
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   async function bwin() {
@@ -189,13 +204,14 @@ export default function VotePage() {
       return { itemArating, itemBrating };
     }
 
-    ("use server");
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0); //returns {itemArating , itemBrating }
+    // use random item pair
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 0); //returns {itemArating , itemBrating }
     //update elo in db
-    //gen random pair
-    //fetch random pair
-    //displayarrayreset
-    //fetchrows
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   async function draw() {
@@ -230,13 +246,14 @@ export default function VotePage() {
       return { itemArating, itemBrating };
     }
 
-    ("use server");
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0.5); //returns {itemArating , itemBrating }
+    // use random item pair
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
-    //gen random pair
-    //fetch random pair
-    //displayarrayreset
-    //fetchrows
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   function randomrow(nrows) {
@@ -286,14 +303,14 @@ export default function VotePage() {
       <div className={styles.voteContainer}>
         <Votecards
           clickevent={awin}
-          image={null}
-          innertext={placeholderA.item}
+          image={usepair.imgUrlA}
+          innertext={usepair.nameA}
           styles={styles.voteA}
         />
         <Votecards
           clickevent={bwin}
-          image={null}
-          innertext={placeholderB.item}
+          image={usepair.imgUrlB}
+          innertext={usepair.nameB}
           styles={styles.voteB}
         />
         <Votecards
