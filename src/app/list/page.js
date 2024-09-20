@@ -31,7 +31,9 @@ export default function ListPage() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const data = await response.json();
+        
+        const unsortedData = await response.json();
+        const data = unsortedData.sort((a, b) => b.elo - a.elo);
         setList(data);
       } catch (error) {
         console.error("Error fetching list data:", error);
