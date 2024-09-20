@@ -10,17 +10,13 @@ export default function VotePage() {
   const listId = 1;
 
   async function fetchListData() {
-    try {
+    {
       const response = await fetch(`${apiRoot}/items/list/${listId}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const unsortedData = await response.json();
-      const data = unsortedData.sort((a, b) => b.elo - a.elo);
-      setList(data);
-    } catch (error) {
-      console.error("Error fetching list data:", error);
-      setError("Failed to fetch list data.");
+      const data = await response.json();
+      return data;
     }
   }
 
@@ -45,9 +41,12 @@ export default function VotePage() {
   }
 
   // GETS ALL ITEMS FROM THE LIST
-  items = fetchListData();
+  let items = fetchListData();
   // Gets ALL unique pairs
-  pairs = generateUniqueIndeces(items);
+  let pairs = generateUniqueIndexPairs(items);
+
+  console.log(items);
+  console.log(pairs);
 
   // This function just updates the elo based on item ID
   async function updateItemElo(itemId, newElo) {
@@ -74,24 +73,36 @@ export default function VotePage() {
     }
   }
 
-  function getElos(indeces, items) {
+  function getItemInfo(indeces, items) {
     const indexA = indeces[0];
     const indexB = indeces[1];
 
-    const eloA = items[indexA].elo;
-    const eloB = items[indexB].elo;
+    const itemA = items[indexA];
+    const itemB = items[indexB];
 
-    return eloA, eloB;
+    const nameA = itemA.name;
+    const nameB = itemB.name;
+
+    const idA = itemA.id;
+    const idB = itemB.id;
+
+    const imgSrcA = itemA.image_url;
+    const imgSrcB = itemB.image_url;
+
+    const eloA = itemA.elo;
+    const eloB = itemB.elo;
+
+    return nameA, nameB, idA, idB, imgUrlA, imgUrlB, eloA, eloB;
   }
 
-  function fetchpair() {
-    //query number of rows
-    //randomrow(^)
-    //change randomrow to return array
-    //query array.1
-    //add rows to displayarray
-    //query array.2
-    //add rows to displayarray
+  function getItems(indeces, items) {
+    const indexA = indeces[0];
+    const indexB = indeces[1];
+
+    const itemA = items[indexA];
+    const itemB = items[indexB];
+
+    return itemA, itemB;
   }
 
   function displayarrayreset() {
