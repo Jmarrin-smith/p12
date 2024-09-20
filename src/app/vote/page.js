@@ -84,17 +84,13 @@ export default function VotePage() {
   const listId = 1;
 
   async function fetchListData() {
-    try {
+    {
       const response = await fetch(`${apiRoot}/items/list/${listId}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const unsortedData = await response.json();
-      const data = unsortedData.sort((a, b) => b.elo - a.elo);
-      setList(data);
-    } catch (error) {
-      console.error("Error fetching list data:", error);
-      setError("Failed to fetch list data.");
+      const data = await response.json();
+      return data;
     }
   }
 
@@ -119,9 +115,12 @@ export default function VotePage() {
   }
 
   // GETS ALL ITEMS FROM THE LIST
-  items = fetchListData();
+  let items = fetchListData();
   // Gets ALL unique pairs
-  pairs = generateUniqueIndeces(items);
+  let pairs = generateUniqueIndexPairs(items);
+
+  // console.log(items);
+  // console.log(pairs);
 
   // This function just updates the elo based on item ID
   async function updateItemElo(itemId, newElo) {
@@ -148,28 +147,52 @@ export default function VotePage() {
     }
   }
 
-  function getElos(indeces, items) {
+  function getItemInfo(indeces, items) {
     const indexA = indeces[0];
     const indexB = indeces[1];
 
-    const eloA = items[indexA].elo;
-    const eloB = items[indexB].elo;
+    const itemA = items[indexA];
+    const itemB = items[indexB];
 
-    return eloA, eloB;
+    const nameA = itemA.name;
+    const nameB = itemB.name;
+
+    const idA = itemA.id;
+    const idB = itemB.id;
+
+    const imgSrcA = itemA.image_url;
+    const imgSrcB = itemB.image_url;
+
+    const eloA = itemA.elo;
+    const eloB = itemB.elo;
+
+    return { nameA, nameB, idA, idB, imgUrlA, imgUrlB, eloA, eloB };
   }
 
-  function fetchpair() {
-    //query number of rows
-    //randomrow(^)
-    //change randomrow to return array
-    //query array.1
-    //add rows to displayarray
-    //query array.2
-    //add rows to displayarray
+  function getItems(indeces, items) {
+    const indexA = indeces[0];
+    const indexB = indeces[1];
+
+    const itemA = items[indexA];
+    const itemB = items[indexB];
+
+    return itemA, itemB;
   }
 
+  let usepair = getItemInfo(pairs, items);
+
+  console.log(usepair);
   function displayarrayreset() {
-    //displayarray pop all
+    "use server";
+    delete usepair.eloA;
+    delete usepair.eloB;
+    delete usepair.idA;
+    delete usepair.idB;
+    delete usepair.imgUrlA;
+    delete usepair.imgUrlB;
+    delete usepair.nameA;
+    delete usepair.nameB;
+    return generateUniqueIndexPairs(items);
   }
 
   //redundant demo testing
@@ -214,10 +237,13 @@ export default function VotePage() {
     }
 
     // use random item pair
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 1); //returns {itemArating , itemBrating }
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
-    //displayarrayreset()
-    //fetchpair()
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   async function bwin() {
@@ -252,13 +278,14 @@ export default function VotePage() {
       return { itemArating, itemBrating };
     }
 
-    ("use server");
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0); //returns {itemArating , itemBrating }
+    // use random item pair
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 0); //returns {itemArating , itemBrating }
     //update elo in db
-    //gen random pair
-    //fetch random pair
-    //displayarrayreset
-    //fetchrows
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   async function draw() {
@@ -293,13 +320,14 @@ export default function VotePage() {
       return { itemArating, itemBrating };
     }
 
-    ("use server");
-    const newrating = eloRating(placeholderA.elo, placeholderB.elo, 30, 0.5); //returns {itemArating , itemBrating }
+    // use random item pair
+    const newrating = eloRating(usepair.eloA, usepair.eloB, 30, 1); //returns {itemArating , itemBrating }
     //update elo in db
-    //gen random pair
-    //fetch random pair
-    //displayarrayreset
-    //fetchrows
+    updateItemElo(usepair.idA, newrating.itemArating);
+    updateItemElo(usepair.idA, newrating.itemArating);
+    pairs = displayarrayreset();
+
+    getItemInfo(pairs, items);
   }
 
   function randomrow(nrows) {
@@ -349,14 +377,14 @@ export default function VotePage() {
       <div className={styles.voteContainer}>
         <Votecards
           clickevent={awin}
-          image={null}
-          innertext={placeholderA.item}
+          image={usepair.imgUrlA}
+          innertext={usepair.nameA}
           styles={styles.voteA}
         />
         <Votecards
           clickevent={bwin}
-          image={null}
-          innertext={placeholderB.item}
+          image={usepair.imgUrlB}
+          innertext={usepair.nameB}
           styles={styles.voteB}
         />
         <Votecards

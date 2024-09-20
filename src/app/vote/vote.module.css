@@ -12,6 +12,11 @@
   flex-wrap: wrap;
 }
 
+.voteContainer image {
+  width: 10vw;
+  margin: auto;
+}
+
 .voteno {
   z-index: 3;
   height: 4rem;
